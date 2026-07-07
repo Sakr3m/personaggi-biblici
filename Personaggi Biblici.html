@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronache Sacre</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+  :root{
+    --gold:#c9a227;
+    --gold-bright:#e8c766;
+    --parchment:#ece0c6;
+    --parchment-dim:#cdbd94;
+    --ember:#d1652b;
+    --divider: rgba(201,162,39,0.35);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+
+  body{
+    font-family:'EB Garamond', serif;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #1c1430 0%, transparent 60%),
+      linear-gradient(180deg, #0b0c14 0%, #171018 55%, #241c14 100%);
+    color: var(--parchment);
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,.8) 50%, transparent 51%),
+      radial-gradient(1px 1px at 25% 65%, rgba(255,255,255,.55) 50%, transparent 51%),
+      radial-gradient(2px 2px at 40% 12%, rgba(255,255,255,.9) 50%, transparent 51%),
+      radial-gradient(1px 1px at 58% 78%, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 74% 30%, rgba(255,255,255,.75) 50%, transparent 51%),
+      radial-gradient(2px 2px at 85% 60%, rgba(255,255,255,.8) 50%, transparent 51%),
+      radial-gradient(1px 1px at 16% 85%, rgba(255,255,255,.55) 50%, transparent 51%),
+      radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 48% 45%, rgba(255,255,255,.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 68% 92%, rgba(255,255,255,.45) 50%, transparent 51%);
+  }
+
+  /* ===== Landing ===== */
+  .landing{
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 40px 20px;
+  }
+
+  .landing .eyebrow{
+    font-family:'Cinzel', serif;
+    letter-spacing:.35em;
+    font-size:.72rem;
+    text-transform:uppercase;
+    color: var(--gold);
+    opacity:.85;
+    margin-bottom:18px;
+  }
+
+  .landing h1{
+    font-family:'Cinzel', serif;
+    font-weight:700;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    letter-spacing:.05em;
+    color: var(--gold-bright);
+    text-shadow: 0 0 40px rgba(201,162,39,.3);
+  }
+
+  .landing .subtitle{
+    font-style:italic;
+    color: var(--parchment-dim);
+    margin-top:16px;
+    font-size:1.05rem;
+    max-width:520px;
+    line-height:1.5;
+  }
+
+  .char-row{
+    margin-top:64px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+    width:100%;
+    max-width:900px;
+  }
+
+  .testaments{
+    margin-top:60px;
+    display:flex;
+    flex-direction:row;
+    align-items:flex-start;
+    justify-content:center;
+    gap:50px;
+    width:100%;
+    max-width:1180px;
+  }
+
+  .testament-col{
+    flex:1;
+    min-width:280px;
+    max-width:560px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    padding: 26px clamp(14px, 4cqw, 32px) 34px;
+    border:1px solid var(--divider);
+    border-radius:4px;
+    background: rgba(0,0,0,.15);
+    container-type: inline-size;
+  }
+
+  .testament-title{
+    font-family:'Cinzel', serif;
+    font-size: clamp(0.6rem, 3.4cqw, 1.05rem);
+    letter-spacing:.01em;
+    color: var(--gold-bright);
+    width:100%;
+    text-align:center;
+    white-space:nowrap;
+    margin-bottom:26px;
+  }
+
+  .testament-list{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+    width:100%;
+    min-height:60px;
+  }
+
+  .testament-list .char-btn{
+    min-width:180px;
+  }
+
+  @media (max-width: 680px){
+    .testaments{ flex-direction:column; align-items:stretch; gap:26px; }
+    .testament-col{ width:100%; }
+  }
+
+  .char-btn{
+    position:relative;
+    font-family:'Cinzel', serif;
+    font-size:1.05rem;
+    letter-spacing:.06em;
+    color: var(--parchment);
+    background: linear-gradient(180deg, rgba(43,33,22,.9), rgba(18,14,10,.95));
+    border:1px solid var(--gold);
+    padding:20px 50px;
+    border-radius:2px;
+    cursor:pointer;
+    min-width:220px;
+    transition: color .3s ease, border-color .3s ease, transform .2s ease;
+  }
+
+  .char-btn::before{
+    content:"";
+    position:absolute; inset:-22px;
+    background: radial-gradient(circle, rgba(209,101,43,.45) 0%, rgba(201,162,39,.14) 45%, transparent 70%);
+    z-index:-1;
+    filter: blur(6px);
+    animation: ember-flicker 3.4s ease-in-out infinite;
+  }
+
+  @keyframes ember-flicker{
+    0%,100%{ opacity:.5; transform:scale(1); }
+    50%{ opacity:.85; transform:scale(1.07); }
+  }
+
+  .char-btn:hover, .char-btn:focus-visible{
+    color: var(--gold-bright);
+    border-color: var(--gold-bright);
+    transform: translateY(-2px);
+    outline:none;
+  }
+
+  .char-btn.disabled{
+    opacity:.35;
+    cursor:default;
+  }
+  .char-btn.disabled::before{ display:none; }
+  .char-btn.disabled:hover{ transform:none; color:var(--parchment); border-color:var(--gold); }
+
+  .landing footer{
+    position:absolute;
+    bottom:20px;
+    font-size:.75rem;
+    letter-spacing:.1em;
+    color: rgba(205,189,148,.4);
+    text-transform:uppercase;
+  }
+
+  /* ===== Modal ===== */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background: rgba(6,5,10,.88);
+    backdrop-filter: blur(3px);
+    z-index:10;
+    display:none;
+    align-items:center; justify-content:center;
+    padding: 26px;
+  }
+  .modal-overlay.open{ display:flex; }
+
+  .modal{
+    position:relative;
+    width:min(1150px, 100%);
+    height:min(880px, 94vh);
+    background: linear-gradient(180deg, #120e18, #1c150f);
+    border:1px solid var(--divider);
+    border-radius:6px;
+    display:grid;
+    grid-template-columns: 240px 1fr;
+    overflow:hidden;
+    box-shadow: 0 30px 90px rgba(0,0,0,.65);
+  }
+
+  .modal-close{
+    position:absolute; top:14px; right:16px;
+    z-index:5;
+    width:38px; height:38px;
+    border-radius:50%;
+    border:1px solid var(--divider);
+    background: rgba(0,0,0,.35);
+    color: var(--parchment-dim);
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: color .2s, border-color .2s;
+  }
+  .modal-close:hover{ color: var(--gold-bright); border-color: var(--gold-bright); }
+
+  .modal-nav{
+    background: rgba(0,0,0,.28);
+    border-right:1px solid var(--divider);
+    padding: 34px 20px;
+    overflow-y:auto;
+  }
+
+  .modal-nav .who{
+    font-family:'Cinzel';
+    font-size:1.1rem;
+    color: var(--gold-bright);
+    letter-spacing:.05em;
+    margin-bottom: 4px;
+  }
+  .modal-nav .who-sub{
+    font-size:.78rem;
+    color: var(--parchment-dim);
+    font-style:italic;
+    margin-bottom: 26px;
+  }
+
+  .modal-nav h2{
+    font-family:'Cinzel';
+    font-size:.7rem;
+    letter-spacing:.18em;
+    color: var(--gold);
+    text-transform:uppercase;
+    margin-bottom:14px;
+    opacity:.8;
+  }
+
+  .modal-nav button{
+    display:block; width:100%; text-align:left;
+    background:none; border:none;
+    font-family:'EB Garamond'; font-size:1rem;
+    color: var(--parchment-dim);
+    padding:9px 4px 9px 14px;
+    cursor:pointer;
+    border-left:2px solid transparent;
+    transition: color .25s, border-color .25s;
+  }
+  .modal-nav button.active, .modal-nav button:hover{
+    color: var(--gold-bright);
+    border-left-color: var(--gold);
+  }
+
+  .modal-content{
+    overflow-y:auto;
+    padding: 56px 60px 90px;
+    line-height:1.65;
+    font-size:1.05rem;
+    scroll-behavior:smooth;
+  }
+
+  .modal-content section{ scroll-margin-top: 20px; }
+
+  .modal-content h2.act-title{
+    font-family:'Cinzel';
+    font-size:1.5rem;
+    color: var(--gold-bright);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .modal-content .act-range{
+    font-style:italic;
+    color: var(--parchment-dim);
+    font-size:.9rem;
+    margin-bottom:22px;
+  }
+
+  .modal-content h3{
+    font-family:'Cinzel';
+    font-size:1.05rem;
+    color: var(--gold);
+    letter-spacing:.02em;
+    margin: 28px 0 12px;
+  }
+
+  .modal-content p{ margin-bottom:16px; }
+
+  .modal-content blockquote{
+    border-left:3px solid var(--gold);
+    padding: 4px 22px;
+    margin: 22px 0;
+    font-style:italic;
+    color: var(--parchment-dim);
+  }
+  .modal-content blockquote cite{
+    display:block;
+    margin-top:8px;
+    font-style:normal;
+    font-size:.82rem;
+    letter-spacing:.06em;
+    color: var(--gold);
+  }
+
+  .modal-content ul{ margin: 6px 0 18px 22px; }
+  .modal-content li{ margin-bottom:8px; }
+  .modal-content li strong{ color: var(--gold-bright); }
+
+  .divider{
+    display:flex; align-items:center; gap:16px;
+    margin: 56px 0;
+    color: var(--gold);
+    font-size:.9rem;
+  }
+  .divider::before, .divider::after{
+    content:""; flex:1; height:1px;
+    background: linear-gradient(90deg, transparent, var(--divider), transparent);
+  }
+
+  table.summary{
+    width:100%;
+    border-collapse: collapse;
+    margin: 20px 0 30px;
+    font-size:.95rem;
+  }
+  table.summary th, table.summary td{
+    border:1px solid var(--divider);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  table.summary th{
+    font-family:'Cinzel';
+    font-size:.78rem;
+    letter-spacing:.05em;
+    color: var(--gold);
+    text-transform:uppercase;
+    background: rgba(201,162,39,.06);
+  }
+
+  .final-quote{
+    text-align:center;
+    margin: 30px 0 40px;
+    font-family:'Cinzel';
+    font-size:1.15rem;
+    color: var(--gold-bright);
+    line-height:1.6;
+  }
+  .final-quote cite{
+    display:block;
+    margin-top:12px;
+    font-family:'EB Garamond';
+    font-style:italic;
+    font-size:.85rem;
+    color: var(--parchment-dim);
+  }
+
+  .biblio{
+    font-size:.9rem;
+    color: var(--parchment-dim);
+  }
+  .biblio ul{ margin-left:20px; }
+
+  @media (max-width: 720px){
+    .modal{ grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .modal-nav{ border-right:none; border-bottom:1px solid var(--divider); padding:20px; }
+    .modal-nav h2{ display:none; }
+    .modal-nav .nav-list{ display:flex; flex-wrap:wrap; gap:6px 16px; }
+    .modal-content{ padding:60px 26px 70px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="landing">
+  <h1>Personaggi Biblici</h1>
+
+  <div class="testaments">
+    <div class="testament-col">
+      <h2 class="testament-title">Antico Testamento / Vecchio Testamento</h2>
+      <div class="testament-list">
+        <button class="char-btn" id="open-moses" type="button">Mosè</button>
+      </div>
+    </div>
+
+    <div class="testament-col">
+      <h2 class="testament-title">Nuovo Testamento</h2>
+      <div class="testament-list">
+      </div>
+    </div>
+  </div>
+
+  <footer>Un archivio in costruzione</footer>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Chiudi">✕</button>
+
+    <nav class="modal-nav">
+      <div class="who">Mosè</div>
+      <div class="who-sub">Principe, pastore, profeta</div>
+      <h2>Indice</h2>
+      <div class="nav-list">
+        <button data-target="sec-intro">Introduzione</button>
+        <button data-target="sec-atto1">Atto I</button>
+        <button data-target="sec-atto2">Atto II</button>
+        <button data-target="sec-atto3">Atto III</button>
+        <button data-target="sec-atto4">Atto IV</button>
+        <button data-target="sec-epilogo">Epilogo</button>
+      </div>
+    </nav>
+
+    <div class="modal-content">
+
+      <section id="sec-intro">
+        <h2 class="act-title">Mosè</h2>
+        <div class="act-range">Una vita in tre quarantenni</div>
+        <p>La vita di Mosè non è solo un racconto biografico, ma una monumentale opera teologica e letteraria. La tradizione biblica la suddivide geometricamente in tre blocchi perfetti di 40 anni ciascuno, in cui Mosè cambia radicalmente identità: prima principe, poi pastore, infine leader e profeta.</p>
+        <p>Ecco l'intera esistenza di Mosè argomentata passo dopo passo, dall'intreccio della sua nascita fino all'ultimo respiro sul Monte Nebo, con i passi biblici chiave.</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="sec-atto1">
+        <h2 class="act-title">Atto I</h2>
+        <div class="act-range">Il Principe d'Egitto e la crisi d'identità · 0-40 anni</div>
+
+        <p>Mosè nasce in un clima di terrore: il Faraone, temendo la crescita demografica degli ebrei ridotti in schiavitù, ordina l'infanticidio di tutti i maschi. La madre di Mosè, Iocebed, compie un atto di disperata fiducia nel destino.</p>
+
+        <blockquote>
+          «Non potendo più tenerlo nascosto, prese per lui un cestello di papiro, lo spalmò di bitume e di pece, vi mise dentro il bambino e lo depose fra i giunchi sulla riva del Nilo.»
+          <cite>Esodo 2:3</cite>
+        </blockquote>
+
+        <p>Trovato dalla figlia del Faraone, viene chiamato Mosè (che in egiziano evoca il concetto di "figlio", mentre l'etimologia ebraica popolare lo traduce con "salvato dalle acque"). Cresce alla corte reale, ricevendo la migliore educazione del mondo antico. Tuttavia, l'artificiosa identità egiziana crolla di colpo quando si scontra con la realtà del suo sangue e dell'oppressione del suo popolo.</p>
+
+        <blockquote>
+          «Un giorno Mosè, cresciuto in età, uscì a trovare i suoi fratelli e notò i loro gravami. Vide un Egiziano che percuoteva un Ebreo, uno dei suoi fratelli. Voltatosi attorno e visto che non c'era nessuno, colpì a morte l'Egiziano e lo seppellì nella sabbia.»
+          <cite>Esodo 2:11-12</cite>
+        </blockquote>
+
+        <h3>L'argomentazione</h3>
+        <p>Questo omicidio rappresenta il punto di svolta cruciale. Mosè tenta inizialmente una liberazione politica impulsiva, ma si scontra con il rifiuto del suo stesso popolo:</p>
+        <ul>
+          <li><strong>Il fallimento del tentativo umano:</strong> gli ebrei lo mettono in discussione chiedendo «Chi ti ha costituito capo e giudice su di noi?».</li>
+          <li><strong>La fuga strategica:</strong> braccato dal Faraone, Mosè abbandona lo status regale per rifugiarsi nel deserto.</li>
+        </ul>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="sec-atto2">
+        <h2 class="act-title">Atto II</h2>
+        <div class="act-range">Il Pastore a Madian e la chiamata divina · 40-80 anni</div>
+
+        <p>Mosè si rifugia nella terra di Madian. Lì difende le figlie del sacerdote Ietro da alcuni pastori prepotenti, sposa una di loro, Sefora, e diventa un semplice pastore di greggi. Per quarant'anni vive nel silenzio, nell'anonimato e nell'umiltà del deserto, dimenticato dall'Egitto e apparentemente senza futuro.</p>
+
+        <p>Finché, sul monte Oreb, la sua routine viene spezzata da un fenomeno paranormale: un roveto che brucia senza consumarsi.</p>
+
+        <blockquote>
+          «L'angelo del Signore gli apparve in una fiamma di fuoco in mezzo a un roveto. Egli guardò ed ecco: il roveto ardeva per il fuoco, ma il roveto non si consumava. [...] Dio lo chiamò dal mezzo del roveto e disse: "Mosè, Mosè!". Rispose: "Eccomi!".»
+          <cite>Esodo 3:2-4</cite>
+        </blockquote>
+
+        <p>In questo incontro, Dio affida a Mosè il compito di guidare l'Esodo, rivelando aspetti fondamentali del piano divino:</p>
+        <ul>
+          <li><strong>L'ascolto del dolore:</strong> Dio dichiara di aver udito il grido degli israeliti.</li>
+          <li><strong>La rivelazione del Nome:</strong> il misterioso "Io sono colui che sono" diventa il fondamento dell'identità di Dio nella storia.</li>
+        </ul>
+
+        <blockquote>
+          «Dio disse a Mosè: "Io sono colui che sono!". Poi disse: "Dirai agli israeliti: Io-Sono mi ha mandato a voi".»
+          <cite>Esodo 3:14</cite>
+        </blockquote>
+
+        <h3>L'argomentazione</h3>
+        <p>I secondi quarant'anni servono a "svuotare" Mosè del suo orgoglio egiziano. Il principe che un tempo usava la violenza ora è un uomo timorato e balbuziente. È proprio in questa debolezza che Dio lo sceglie: la liberazione d'Israele non sarà un'opera militare di Mosè, ma una manifestazione della potenza divina.</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="sec-atto3">
+        <h2 class="act-title">Atto III</h2>
+        <div class="act-range">L'Esodo, la Legge e il Deserto · 80-120 anni</div>
+
+        <p>Mosè torna in Egitto insieme al fratello Aronne. Davanti all'ostinazione del Faraone, l'Egitto viene devastato dalle dieci piaghe. Dopo l'ultima piaga (la morte dei primogeniti), il Faraone cede. Il popolo parte, ma viene subito braccato dall'esercito egiziano alle spalle, con il Mar Rosso davanti. È il momento del miracolo più celebre:</p>
+
+        <blockquote>
+          «Allora Mosè stese la mano sul mare. E il Signore sospinse il mare con un forte vento d'oriente durato tutta la notte, e rendette il mare asciutto; le acque si divisero. Gli israeliti entrarono in mezzo al mare all'asciutto, mentre le acque erano per loro come un muro a destra e a sinistra.»
+          <cite>Esodo 14:21-22</cite>
+        </blockquote>
+
+        <p>Una volta superato il mare, Mosè conduce il popolo al Monte Sinai, dove riceve i Dieci Comandamenti e stabilisce la teocrazia d'Israele.</p>
+
+        <blockquote>
+          «Dio allora pronunciò tutte queste parole: "Io sono il Signore, tuo Dio, che ti ho fatto uscire dalla terra d'Egitto, dalla condizione di schiavitù: Non avrai altri dei di fronte a me..."»
+          <cite>Esodo 20:1-3</cite>
+        </blockquote>
+
+        <h3>Il dramma del deserto e la colpa di Meriba</h3>
+        <p>La marcia verso la Terra Promessa si trasforma in un calvario lungo quarant'anni a causa delle costanti ribellioni, nostalgie dell'Egitto e idolatrie (come il vitello d'oro) del popolo. Verso la fine del viaggio, presso le acque di Meriba, la pazienza di Mosè cede definitivamente di fronte alle proteste per la mancanza d'acqua.</p>
+
+        <p>Anziché limitarsi a parlare alla roccia come ordinato da Dio, Mosè la colpisce con rabbia e arroganza:</p>
+
+        <blockquote>
+          «Mosè alzò la mano, percosse la roccia con il suo bastone due volte e ne uscì acqua in abbondanza [...]. Ma il Signore disse a Mosè e ad Aronne: "Poiché non avete avuto fiducia in me, per manifestare la mia santità agli occhi degli israeliti, voi non introdurrete quest'assemblea nel paese che io le do".»
+          <cite>Numeri 20:11-12</cite>
+        </blockquote>
+
+        <p>L'incidente di Meriba mette in luce la fragilità del leader:</p>
+        <ul>
+          <li><strong>La mancanza di fede:</strong> Mosè e Aronne attribuiscono a se stessi l'estrazione dell'acqua ("vi faremo noi uscire acqua").</li>
+          <li><strong>La conseguenza:</strong> nonostante la fedeltà di una vita, la condanna è categorica: vedere la meta senza potervi entrare.</li>
+        </ul>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="sec-atto4">
+        <h2 class="act-title">Atto IV</h2>
+        <div class="act-range">Gli ultimi giorni e la morte sul Monte Nebo · 120 anni</div>
+
+        <p>Arrivato alle porte di Canaan, nelle pianure di Moab, Mosè sa che la sua ora è giunta. Spende i suoi ultimi sprazzi di energia per scrivere la Legge, benedire le dodici tribù e nominare ufficialmente il suo successore, Giosuè.</p>
+
+        <p>Poi, obbedendo all'ultimo comando, sale in solitudine sul Monte Nebo.</p>
+
+        <blockquote>
+          «Mosè salì dalle pianure di Moab sul monte Nebo, in vetta al Pisga, che è di fronte a Gerico. E il Signore gli fece vedere tutto il paese [...]. Il Signore gli disse: "Questo è il paese per il quale io ho giurato ad Abramo, a Isacco e a Giacobbe, dicendo: 'Io lo darò alla tua discendenza'. Io te l'ho fatto vedere con i tuoi occhi, ma tu non vi entrerai".»
+          <cite>Deuteronomio 34:1-4</cite>
+        </blockquote>
+
+        <p>Mosè muore lì, a 120 anni, sul confine tra il viaggio e la meta, tra la promessa e il suo adempimento.</p>
+
+        <blockquote>
+          «Mosè, servo del Signore, morì là, nel paese di Moab, come il Signore aveva comandato. E fu sepolto nella valle, nel paese di Moab, di fronte a Bet-Peor; e nessuno fino a oggi ha mai saputo dove sia la sua tomba. Mosè aveva centovent'anni quando morì; la vista non gli si era indebolita e il vigore non gli era venuto meno.»
+          <cite>Deuteronomio 34:5-7</cite>
+        </blockquote>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="sec-epilogo">
+        <h2 class="act-title">Epilogo</h2>
+        <div class="act-range">Sintesi e riferimenti</div>
+
+        <table class="summary">
+          <thead>
+            <tr>
+              <th>Fase della vita</th>
+              <th>Età</th>
+              <th>Ruolo principale</th>
+              <th>Luogo chiave</th>
+              <th>Evento teologico/politico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1° Quarantennio</td>
+              <td>0-40 anni</td>
+              <td>Principe d'Egitto</td>
+              <td>Egitto (corte reale)</td>
+              <td>Rottura con l'Egitto, omicidio della guardia, fuga.</td>
+            </tr>
+            <tr>
+              <td>2° Quarantennio</td>
+              <td>40-80 anni</td>
+              <td>Pastore / Esiliato</td>
+              <td>Terra di Madian / Sinai</td>
+              <td>Teofania del roveto ardente, rivelazione del Nome divino.</td>
+            </tr>
+            <tr>
+              <td>3° Quarantennio</td>
+              <td>80-120 anni</td>
+              <td>Leader / Profeta</td>
+              <td>Deserto / Monte Sinai</td>
+              <td>Piaghe, Mar Rosso, i 10 Comandamenti, peccato di Meriba.</td>
+            </tr>
+            <tr>
+              <td>La fine</td>
+              <td>120 anni</td>
+              <td>Morente / Vedetta</td>
+              <td>Monte Nebo</td>
+              <td>Visione della Terra Promessa, morte e sepoltura misteriosa.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>La narrazione si chiude con il più grande encomio che la letteratura biblica riserva a un essere umano, definendo per sempre la statura spirituale di Mosè:</p>
+
+        <div class="final-quote">
+          «Non è più sorto in Israele un profeta simile a Mosè, con il quale il Signore parlava faccia a faccia.»
+          <cite>Deuteronomio 34:10</cite>
+        </div>
+
+        <h3>Bibliografia e riferimenti</h3>
+        <div class="biblio">
+          <p>I seguenti passi biblici sono stati citati per ricostruire la cronologia e la teologia della vita di Mosè:</p>
+          <ul>
+            <li>Libro dell'Esodo: 2:3, 2:11-12, 3:2-4, 3:14, 14:21-22, 20:1-3</li>
+            <li>Libro dei Numeri: 20:11-12</li>
+            <li>Libro del Deuteronomio: 34:1-4, 34:5-7, 34:10</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const openBtn = document.getElementById('open-moses');
+  const overlay = document.getElementById('modal-overlay');
+  const closeBtn = document.getElementById('modal-close');
+  const content = document.querySelector('.modal-content');
+
+  function openModal(){
+    overlay.classList.add('open');
+    content.scrollTop = 0;
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  const navButtons = document.querySelectorAll('.modal-nav button[data-target]');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const sections = document.querySelectorAll('.modal-content section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navButtons.forEach(b => b.classList.remove('active'));
+        const match = document.querySelector(`.modal-nav button[data-target="${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { root: content, threshold: 0, rootMargin: '-10% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
