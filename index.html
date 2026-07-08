@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cronache Sacre</title>
+<title>Personaggi Biblici</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
@@ -416,7 +416,8 @@
     <div class="testament-col">
       <h2 class="testament-title">Antico Testamento / Vecchio Testamento</h2>
       <div class="testament-list">
-        <button class="char-btn" id="open-moses" type="button">Mosè</button>
+        <button class="char-btn" data-open="modal-overlay-mose" type="button">Mosè</button>
+        <button class="char-btn" data-open="modal-overlay-giuseppe" type="button">Giuseppe</button>
       </div>
     </div>
 
@@ -430,9 +431,9 @@
   <footer>Un archivio in costruzione</footer>
 </div>
 
-<div class="modal-overlay" id="modal-overlay">
+<div class="modal-overlay" id="modal-overlay-mose">
   <div class="modal">
-    <button class="modal-close" id="modal-close" aria-label="Chiudi">✕</button>
+    <button class="modal-close" aria-label="Chiudi">✕</button>
 
     <nav class="modal-nav">
       <div class="who">Mosè</div>
@@ -645,45 +646,204 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-overlay-giuseppe">
+  <div class="modal">
+    <button class="modal-close" aria-label="Chiudi">✕</button>
+
+    <nav class="modal-nav">
+      <div class="who">Giuseppe</div>
+      <div class="who-sub">Il Tessitore di Sogni</div>
+      <h2>Indice</h2>
+      <div class="nav-list">
+        <button data-target="g-intro">Introduzione</button>
+        <button data-target="g-sogni">I Sogni della Giovinezza</button>
+        <button data-target="g-nilo">L'Ombra del Nilo</button>
+        <button data-target="g-visione">La Visione del Faraone</button>
+        <button data-target="g-vicere">Il Viceré e la Provvidenza</button>
+        <button data-target="g-epilogo">Epilogo</button>
+      </div>
+    </nav>
+
+    <div class="modal-content">
+
+      <section id="g-intro">
+        <h2 class="act-title">Giuseppe</h2>
+        <div class="act-range">Il Tessitore di Sogni</div>
+        <p>Giuseppe nacque nelle terre di Canaan, figlio primogenito di Giacobbe e della sua amata Rachele, in una famiglia segnata da grandi promesse divine. Nelle terre dorate di Canaan, dove il vento sussurra tra i rami dei terebinti, viveva questo giovane la cui anima era intessuta di visioni. Giuseppe, il figlio prediletto, non camminava solo sulla terra brulla; egli abitava un regno di simboli e presagi. La sua tunica, un mosaico di colori che sembrava aver rubato le sfumature all'alba e al tramonto, era il vessillo del suo destino e la scintilla che accese l'invidia dei suoi fratelli.</p>
+
+        <h3>Sintesi cronologica</h3>
+        <ul>
+          <li><strong>Nascita e predilezione:</strong> il figlio prediletto di Giacobbe riceve la tunica dalle lunghe maniche (Genesi 37:3).</li>
+          <li><strong>Tradimento e schiavitù:</strong> venduto dai fratelli ai mercanti ismaeliti per venti sicli d'argento (Genesi 37:28).</li>
+          <li><strong>Ascesa a viceré e perdono:</strong> nominato governatore d'Egitto dal Faraone, si rivela infine ai suoi fratelli riconciliandosi con loro (Genesi 41:41; 45:1-15).</li>
+          <li><strong>Morte e promessa del ritorno:</strong> muore all'età di centodieci anni, lasciando la speranza del ritorno nella terra dei padri (Genesi 50:26).</li>
+        </ul>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="g-sogni">
+        <h2 class="act-title">I Sogni della Giovinezza</h2>
+        <div class="act-range">Canaan</div>
+
+        <p>Una notte, sotto un manto di stelle infinite, Giuseppe sognò dei covoni di grano in un campo. Il suo covone si ergeva fiero al centro, mentre quelli dei suoi fratelli lo circondavano e si inchinavano in un silenzioso atto di sottomissione (Genesi 37:5-7). Questa prima visione simboleggiava in modo inequivocabile il futuro dominio materiale e politico di Giuseppe sui suoi consanguinei. Poco dopo, una seconda visione ancor più grandiosa illuminò il suo sonno: il sole, la luna e undici stelle rendevano omaggio alla sua luce (Genesi 37:9). Quest'immagine rappresentava l'intera famiglia patriarcale, inclusi i genitori e tutti i fratelli, prostrati dinanzi alla sua futura gloria.</p>
+
+        <p>Erano sogni di esaltazione, ma anche semi di discordia: pur essendo autentici messaggi profetici inviati dalla divinità per annunciare il suo ruolo di salvatore e guida, vennero percepiti dai fratelli solo come deliri di grandezza. L'invidia, come una ruggine silenziosa, consumò il loro cuore finché, in un giorno di calura opprimente, Giuseppe raggiunse i fratelli a Dotan. Lì, essi complottarono contro di lui: lo spogliarono con violenza della sua tunica colorata e lo gettarono nell'oscurità di una cisterna vuota e senz'acqua (Genesi 37:23-24). Poco dopo, scorgendo una carovana di Ismaeliti diretta verso sud, decisero di trarne profitto vendendo il proprio fratello come schiavo per venti sicli d'argento (Genesi 37:28). Per celare l'infamia e ingannare il padre Giacobbe, macchiarono la veste di Giuseppe con il sangue di un capro, lasciandogli credere che una fiera lo avesse sbranato (Genesi 37:31).</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="g-nilo">
+        <h2 class="act-title">L'Ombra del Nilo</h2>
+        <div class="act-range">Egitto · Casa di Putifarre</div>
+
+        <p>L'Egitto accolse Giuseppe con il calore delle sue sabbie e la maestosità delle sue pietre. Da principe di Canaan a schiavo nella casa di Putifarre, Giuseppe non smarrì mai la sua integrità. Tuttavia, il destino è un sentiero tortuoso. Accusato ingiustamente, si ritrovò nelle profondità di una prigione, dove l'oscurità avrebbe potuto inghiottire chiunque.</p>
+
+        <blockquote>
+          Ma Giuseppe portava la luce dentro di sé, poiché il Signore era con lui e riversava su di lui la sua grazia.
+          <cite>Genesi 39:21</cite>
+        </blockquote>
+
+        <p>Fu tra quelle mura fredde che la sua fama di interprete di sogni iniziò a diffondersi, ridonando speranza a chi aveva perso il domani.</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="g-visione">
+        <h2 class="act-title">La Visione del Faraone</h2>
+        <div class="act-range">Il Palazzo Reale</div>
+
+        <p>Il Faraone, signore delle Due Terre, era tormentato da visioni che i suoi saggi non sapevano decifrare. Giuseppe, dopo essere stato chiamato in fretta dalla prigione, si purificò e cambiò veste per presentarsi con dignità dinanzi al trono. Quando il sovrano gli chiese di interpretare i sogni, Giuseppe rispose con profonda umiltà:</p>
+
+        <blockquote>
+          «Non io; Dio darà la risposta che procura benessere al faraone.»
+          <cite>Genesi 41:16</cite>
+        </blockquote>
+
+        <p>Egli spiegò che le visioni delle sette vacche e delle sette spighe belle rappresentavano sette anni di straordinaria abbondanza, seguiti da sette anni di una carestia così devastante da far dimenticare ogni ricchezza (Genesi 41:25-31). Con audacia ispirata, Giuseppe propose un piano di gestione rigoroso: prelevare un quinto dei prodotti durante gli anni buoni e accumulare riserve di grano sotto l'autorità regale (Genesi 41:33-36). Colpito dall'intelligenza del giovane, in cui riconobbe la guida dello Spirito di Dio, il Faraone lo scelse immediatamente per attuare il piano, elevandolo sopra tutto il popolo d'Egitto (Genesi 41:37-41).</p>
+
+        <p>Non era solo una spiegazione; era una profezia di salvezza.</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="g-vicere">
+        <h2 class="act-title">Il Viceré e la Provvidenza</h2>
+        <div class="act-range">L'Egitto degli anni della carestia</div>
+
+        <p>Impressionato dalla saggezza del giovane straniero, il Faraone lo nominò Viceré d'Egitto, affidandogli l'anello sigillo e le sorti del regno. Giuseppe divenne l'amministratore della vita. Durante gli anni di abbondanza, accumulò grano in quantità tali da coprire le dune del deserto. Quando la carestia colpì, i popoli di ogni terra vennero a bussare alle porte dell'Egitto.</p>
+
+        <p>Tra coloro che cercavano pane, giunsero anche i suoi fratelli. Giuseppe li riconobbe subito, ma si finse estraneo, parlando loro con durezza attraverso un interprete per non svelarsi. Egli li accusò apertamente di essere spie venute per esplorare i punti deboli del paese (Genesi 42:9-14), costringendoli a difendere la propria onestà rievocando la loro storia familiare. Per mettere alla prova la loro veridicità, Giuseppe impose una condizione severa: trattenne Simeone in catene come ostaggio nelle prigioni egiziane (Genesi 42:24), ordinando agli altri di tornare in Canaan e condurre dinanzi a lui Beniamino, il fratello minore rimasto con il padre (Genesi 42:20).</p>
+
+        <p>Il culmine di questo percorso giunse con lo stratagemma della coppa d'argento, che Giuseppe fece nascondere segretamente nel sacco di Beniamino (Genesi 44:1-2). Quando la coppa fu rinvenuta, Giuseppe minacciò di rendere schiavo solo il più giovane, offrendo ai fratelli l'occasione perfetta per abbandonarlo come avevano fatto anni prima con lui (Genesi 44:17). Tuttavia, la loro risposta fu diversa: essi implorarono pietà e Giuda si offrì di prendere il posto di Beniamino, dimostrando un amore sacrificale che non conoscevano in gioventù. Queste prove non erano atti di vendetta, ma una precisa architettura spirituale volta a verificare la loro trasformazione profonda e la loro redenzione; solo dopo aver visto la loro volontà di proteggere il fratello a costo della propria vita, Giuseppe scelse di rivelarsi, suggellando il perdono in un momento di incontenibile commozione.</p>
+
+        <blockquote>
+          «Non siete stati voi a mandarmi qui, ma Dio, per conservare la vita.»
+          <cite>Genesi 45:5</cite>
+        </blockquote>
+
+        <p>Così, il sognatore divenne il salvatore, e il viaggio iniziato nel buio di un pozzo si concluse nel tripudio di un popolo nutrito e di una famiglia ritrovata.</p>
+      </section>
+
+      <div class="divider">❖</div>
+
+      <section id="g-epilogo">
+        <h2 class="act-title">Epilogo</h2>
+        <div class="act-range">Sintesi e riferimenti</div>
+
+        <table class="summary">
+          <thead>
+            <tr>
+              <th>Fase del viaggio</th>
+              <th>Luogo</th>
+              <th>Ruolo</th>
+              <th>Significato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>La Visione</td>
+              <td>Canaan</td>
+              <td>Figlio Prediletto</td>
+              <td>Il dono della profezia e il costo dell'invidia.</td>
+            </tr>
+            <tr>
+              <td>La Prova</td>
+              <td>Egitto (Prigione)</td>
+              <td>Servo / Prigioniero</td>
+              <td>La tempra del carattere nel silenzio e nell'ingiustizia.</td>
+            </tr>
+            <tr>
+              <td>L'Ascesa</td>
+              <td>Palazzo Reale</td>
+              <td>Viceré</td>
+              <td>La saggezza al servizio della sopravvivenza collettiva.</td>
+            </tr>
+            <tr>
+              <td>La Redenzione</td>
+              <td>Granai d'Egitto</td>
+              <td>Salvatore</td>
+              <td>Il perdono che ricompone i frammenti del passato.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Giuseppe trascorse i suoi ultimi anni nella terra di Gosen, circondato dall'affetto della sua famiglia e vedendo i figli di Efraim fino alla terza generazione. Giunto all'età di centodieci anni, sentendo la fine avvicinarsi, egli non dimenticò la promessa fatta da Dio ai suoi padri. Prima di spirare, chiese ai figli d'Israele di prestare un giuramento solenne: quando Dio li avrebbe visitati per riportarli nella terra promessa, essi avrebbero dovuto portare con sé le sue ossa fuori dall'Egitto (Genesi 50:22-26). Fu così imbalsamato e deposto in un sarcofago, un seme di speranza piantato in terra straniera in attesa del ritorno a casa.</p>
+
+        <p>La figura di Giuseppe rimane uno dei pilastri più luminosi della narrazione biblica, rappresentando il modello supremo della Divina Provvidenza: ciò che gli uomini avevano tramato per il male, Dio lo ha trasformato in bene per salvare un popolo numeroso (Genesi 50:20). Egli incarna la forza del perdono capace di guarire ferite profonde e funge da ponte vitale tra l'epoca dei Patriarchi e l'imminente epopea dell'Esodo. La sua vita insegna che l'integrità e la fede, mantenute anche nelle prove più oscure, sono gli strumenti attraverso cui il destino si compie, trasformando un sognatore tradito nel custode della sopravvivenza di Israele.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
 <script>
-  const openBtn = document.getElementById('open-moses');
-  const overlay = document.getElementById('modal-overlay');
-  const closeBtn = document.getElementById('modal-close');
-  const content = document.querySelector('.modal-content');
+  document.querySelectorAll('[data-open]').forEach(openBtn => {
+    const overlay = document.getElementById(openBtn.dataset.open);
+    if (!overlay) return;
 
-  function openModal(){
-    overlay.classList.add('open');
-    content.scrollTop = 0;
-  }
-  function closeModal(){
-    overlay.classList.remove('open');
-  }
+    const closeBtn = overlay.querySelector('.modal-close');
+    const content = overlay.querySelector('.modal-content');
 
-  openBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    function openModal(){
+      overlay.classList.add('open');
+      content.scrollTop = 0;
+    }
+    function closeModal(){
+      overlay.classList.remove('open');
+    }
 
-  const navButtons = document.querySelectorAll('.modal-nav button[data-target]');
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.getElementById(btn.dataset.target);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+    const navButtons = overlay.querySelectorAll('.modal-nav button[data-target]');
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = overlay.querySelector('#' + btn.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
+
+    const sections = overlay.querySelectorAll('.modal-content section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navButtons.forEach(b => b.classList.remove('active'));
+          const match = overlay.querySelector(`.modal-nav button[data-target="${entry.target.id}"]`);
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { root: content, threshold: 0, rootMargin: '-10% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
   });
 
-  const sections = document.querySelectorAll('.modal-content section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navButtons.forEach(b => b.classList.remove('active'));
-        const match = document.querySelector(`.modal-nav button[data-target="${entry.target.id}"]`);
-        if (match) match.classList.add('active');
-      }
-    });
-  }, { root: content, threshold: 0, rootMargin: '-10% 0px -70% 0px' });
-
-  sections.forEach(s => observer.observe(s));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(o => o.classList.remove('open'));
+    }
+  });
 </script>
 
 </body>
